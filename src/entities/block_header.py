@@ -51,7 +51,7 @@ class BlockHeader:
         mr = f'merkel root: {self._merkel_root}'
         nnc_repr = '🚫' if self._nonce == INIT_NONCE else str(self._nonce)
         nnc = f'nonce: {nnc_repr}'
-        sze = f'size in bytes: {self.size_in_bytes_str()}'
+        sze = f'size in bytes: {self.dict_size_in_bytes_str()}'
         nom = f'number of members in dict: {self.number_of_members_str()}'
         dfft = f'difficulty: {str(self._difficulty)}'
         result = (f'{descr}:\n ▪️ {ver};\n ▪️ {hgh};\n ▪️ {pr_h};\n ▪️ {mr};\n ▪️ {nnc};\n ▪️ {dfft};'
@@ -85,13 +85,19 @@ class BlockHeader:
         """ Преобразование внутренних данных в JSON-строку """
         return jsonifier.dict_to_json_str(self.as_dict())
 
-    def size_in_bytes(self) -> int:
+    def as_bytes(self):
+        return self.as_json().encode()
+
+    def size_in_bytes(self):
+        return len(self.as_bytes())
+
+    def dict_size_in_bytes(self) -> int:
         """ Размер внутренних данных (в виде словаря) в байтах """
         return sysutils.dict_size_in_bytes(self.as_dict())
 
-    def size_in_bytes_str(self) -> str:
+    def dict_size_in_bytes_str(self) -> str:
         """ Строковое представление размера внутренних данных (в виде словаря) в байтах """
-        return str(self.size_in_bytes())
+        return str(self.dict_size_in_bytes())
 
     def number_of_members(self) -> int:
         """ Количество элементов в словаре """
@@ -208,3 +214,4 @@ class BlockHeader:
 
 bh = BlockHeader(True)
 print(bh)
+

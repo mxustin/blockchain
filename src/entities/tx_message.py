@@ -4,11 +4,14 @@ from src.frontier import sysutils
 
 # region Константы
 SENDER_UNDEFINED: str = 'undefined'
-ACCEPTOR_UNDEFINED: str = 'undefined'
-EMPTY_STR: str = ''
-EMPTY_MESSAGE: str = EMPTY_STR
-NO_SIGNATURE: str = EMPTY_STR
 
+ACCEPTOR_UNDEFINED: str = 'undefined'
+
+EMPTY_STR: str = ''
+
+EMPTY_MESSAGE: str = EMPTY_STR
+
+NO_SIGNATURE: str = EMPTY_STR
 # endregion
 
 
