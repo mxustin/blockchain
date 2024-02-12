@@ -27,4 +27,5 @@ def test_value_changing():
     v = ProtocolVersionFull(5, 8, 13)
     v.patch += 1
     assert v.patch == 14
-
+    v << (7, 9, 14)
+    assert v.major == 7
