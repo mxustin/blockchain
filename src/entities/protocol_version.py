@@ -241,3 +241,74 @@ class ProtocolVersionFull:
             self._patch = value
         else:
             raise ValueError(errs.PVF_PATCH_VALUE_ERROR)
+
+
+class ProtocolVersion:
+    """ «Фактическая» версия протокола — объект для хранения в памяти (не записывается в заголовки блоков) """
+
+    def __init__(self, full: ProtocolVersionFull, short: ProtocolVersionShort):
+        self._full = None
+        self._full: ProtocolVersionFull
+        self.full = full
+        self._short = None
+        self._short: ProtocolVersionShort
+        self.short = short
+        self._major, self._minor, self._patch = full + short
+
+    def __repr__(self):
+        descr = f'The Version of protocol (instance of {__class__.__name__}) is {self.as_str()}'
+        ...  # todo ...
+        mj = f'major version: {self._major}'
+        mn = f'minor version: {self._minor}'
+        pt = f'patch version: {self._patch}'
+        result = (f'{descr}:'
+                  f'\n ▪️ {mj};'
+                  f'\n ▪️ {mn};'
+                  f'\n ▪️ {pt}.')
+        return result
+
+    def __str__(self) -> str:
+        """ Человеко-читаемое строковое представление (например, для JSON) """
+        return self.as_str()
+
+    def as_str(self) -> str:
+        """ Строковое представление (для JSON, или для словарного представления) """
+        return f'{self._major}.{self._minor}.{self._patch}'
+
+    @property
+    def major(self) -> int:
+        """ "Мажор" """
+        return self._major
+
+    @property
+    def minor(self) -> int:
+        """ "Минор" """
+        return self._minor
+
+    @property
+    def patch(self) -> int:
+        """ "Патч" """
+        return self._patch
+
+    @property
+    def short(self):
+        return self._short
+
+    @short.setter
+    def short(self, value: ProtocolVersionShort):
+        if isinstance(value, ProtocolVersionShort):
+            self._short = value
+
+    @property
+    def full(self):
+        return self._full
+
+    @full.setter
+    def full(self, value: ProtocolVersionFull):
+        if isinstance(value, ProtocolVersionFull):
+            self._full = value
+
+
+ver = ProtocolVersion(ProtocolVersionFull(0, 1, 0), ProtocolVersionShort(0, 2, 0))
+print(ver)
+print(repr(ver))
