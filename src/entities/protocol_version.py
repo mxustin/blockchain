@@ -314,6 +314,16 @@ class ProtocolVersionFull:
         else:
             raise ValueError(errs.PVF_PATCH_VALUE_ERROR)
 
+    @property
+    def observer(self) -> ProtocolVersionObserver:
+        return self._observer
+
+    @observer.setter
+    def observer(self, value: ProtocolVersionObserver) -> None:
+        if isinstance(value, ProtocolVersionObserver):
+            self._observer = value
+            self._observer.process_changing()
+
 
 class ProtocolVersion(ProtocolVersionObserver):
     """ «Фактическая» версия протокола — объект для хранения в памяти (не записывается в заголовки блоков) """
@@ -384,6 +394,7 @@ class ProtocolVersion(ProtocolVersionObserver):
     def short(self, value: ProtocolVersionShort) -> None:
         if isinstance(value, ProtocolVersionShort):
             self._short = value
+            self._short.observer = self
             self._upd()
 
     @property
@@ -394,4 +405,5 @@ class ProtocolVersion(ProtocolVersionObserver):
     def full(self, value: ProtocolVersionFull) -> None:
         if isinstance(value, ProtocolVersionFull):
             self._full = value
+            self._full.observer = self
             self._upd()

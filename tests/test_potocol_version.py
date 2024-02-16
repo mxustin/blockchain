@@ -122,7 +122,9 @@ def test_p_ver_init():
     v = pver.ProtocolVersion(f_ver, s_ver)
     assert v.minor == 1
     v.full.patch += 1
-    assert v.full.patch == 1
+    assert v.patch == 1
+    v.short.patch += 1
+    assert v.patch == 2
 
 
 
