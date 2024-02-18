@@ -26,6 +26,10 @@ UNKNOWN_NONCE: int = 0
 DATETIME_FORMAT: str = '%d.%m.%Y %H:%M:%S.%f'
 """ Человеко-понятный формат даты/времени """
 
+DATETIME_BEGINNING: str = '01.01.2024 00:00:00.0'
+
+MOSCOW_TIMEZONE: str = 'Europe/Moscow'
+
 MINIMAL_DIFFICULTY: int = 1
 """ Минимальная сложность """
 # endregion
