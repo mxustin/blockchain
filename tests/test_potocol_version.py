@@ -127,6 +127,14 @@ def test_p_ver_init():
     assert v.patch == 2
 
 
+def test_p_ver_repr():
+    f_ver = pver.ProtocolVersionFull(0, 1, 1)
+    s_ver = pver.ProtocolVersionShort(0, 1, 1)
+    v = pver.ProtocolVersion(f_ver, s_ver)
+    assert v.as_str() == '0.2.2'
+    assert repr(v)[:3] == 'The'  # Полное представление довольно длинное...
+
+
 
 # endregion
 
