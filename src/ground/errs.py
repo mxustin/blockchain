@@ -19,18 +19,4 @@ PVF_BYTE_ARRAY_HAS_INCORRECT_LENGTH = 'Incorrect length of bytearray (exactly 2 
 """ Сообщение об ошибке входного значения при попытке установить версию через массив байтов 
 (требуется ровно 2 байта) """
 
-PVS_ONLY_ONE_BYTE_EXPECTED = 'Incorrect length of bytearray (only 1 byte expected)'
-""" Сообщение об ошибке входного значения "краткую версию" через массив байтов (требуется 1 байт) """
-
-PVS_MAJOR_VALUE_ERROR = ('Incorrect "major" value for the short version of the protocol '
-                         '(a value between 0 and 3 is expected)')
-""" Сообщение об ошибке входного значения при попытке установить «мажор» для краткой версии протокола """
-
-PVS_MINOR_VALUE_ERROR = ('Incorrect "minor" value for the short version of the protocol '
-                         '(a value between 0 and 7 is expected)')
-""" Сообщение об ошибке входного значения при попытке установить «минор» для краткой версии протокола """
-
-PVS_PATCH_VALUE_ERROR = ('Incorrect "patch" value for the short version of the protocol '
-                         '(a value between 0 and 7 is expected)')
-""" Сообщение об ошибке входного значения при попытке установить «патч» для краткой версии протокола """
 
